@@ -34,8 +34,8 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-    @photographs.find do |photo|
-      photo.artist_id
+    @artists.each_with_object([]) do |artist, multiple|
+      multiple << artist unless find_photographs_by_artist(artist).length <= 1
     end
   end
 
