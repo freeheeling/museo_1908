@@ -41,9 +41,7 @@ class Curator
 
   def photographs_taken_by_artist_from(country)
     @artists.inject([]) do |photos, artist|
-      if artist.country == country
-        photos << find_photographs_by_artist(artist)
-      end
+      photos << find_photographs_by_artist(artist) if artist.country == country
       photos.flatten
     end
   end
