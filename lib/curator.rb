@@ -34,7 +34,9 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-    
+    @photographs.find_all do |photo|
+      photo.artist_id.uniq == false
+    end
   end
 
 end
