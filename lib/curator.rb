@@ -34,12 +34,16 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-    @artists.each_with_object([]) do |artist, multiple|
-      multiple << artist unless find_photographs_by_artist(artist).length <= 1
+    @artists.each_with_object([]) do |artist, multiples|
+      multiples << artist if find_photographs_by_artist(artist).length > 1
     end
   end
 
   def photographs_taken_by_artist_from(country)
+    @artists.inject([]) do |photos, artist|
+      photos << artist if artist.country == country
+      photos
+    end
   end
 
 end
